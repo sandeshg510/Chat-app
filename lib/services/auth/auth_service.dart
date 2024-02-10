@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../theme/theme.dart';
+
 class AuthService extends ChangeNotifier {
   //instance of auth
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -11,7 +13,9 @@ class AuthService extends ChangeNotifier {
 
   //sign user in
   Future<UserCredential> signInWithEmailAndPassword(
-      String email, String password) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     try {
       // Sign in
       UserCredential userCredential =
@@ -23,6 +27,7 @@ class AuthService extends ChangeNotifier {
       // add a new document for the user in the users collection if it doesn't already exist
       _firebaseFirestore.collection('users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
+        'name': name,
         'email': email,
       }, SetOptions(merge: true));
 
@@ -36,7 +41,9 @@ class AuthService extends ChangeNotifier {
 
   // create a new user
   Future<UserCredential> signUpWithEmailAndPassword(
-      String email, password) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -47,6 +54,7 @@ class AuthService extends ChangeNotifier {
       // After creating a new user, create a new document for user in the users collection.
       _firebaseFirestore.collection('users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
+        'name': name,
         'email': email,
       });
 
@@ -59,5 +67,24 @@ class AuthService extends ChangeNotifier {
   //sign user out
   Future<void> signOut() async {
     return await FirebaseAuth.instance.signOut();
+  }
+
+  // Theme
+
+  ThemeData _themeData = lightMode;
+
+  ThemeData get themeData => _themeData;
+
+  set themeData(ThemeData themeData) {
+    _themeData = themeData;
+    notifyListeners();
+  }
+
+  void toggleTheme() {
+    if (_themeData == lightMode) {
+      themeData = darkMode;
+    } else {
+      themeData = lightMode;
+    }
   }
 }

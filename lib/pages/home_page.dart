@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:chat_messenger/constants/my_colors.dart';
 
 import 'chat_page.dart';
 
@@ -35,7 +36,10 @@ class _HomePageState extends State<HomePage> {
           IconButton(onPressed: signOut, icon: const Icon(Icons.logout))
         ],
       ),
-      body: _buildUserList(),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 18.0, top: 10),
+        child: _buildUserList(),
+      ),
     );
   }
 
@@ -63,9 +67,9 @@ class _HomePageState extends State<HomePage> {
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
     // display all users except current user
-    if (_auth.currentUser!.email != data['email']) {
+    if (_auth.currentUser!.uid != data['uid']) {
       return ListTile(
-        title: Text(data['email']),
+        title: Text(data['name']),
         onTap: () {
           // pass the clicked user's UID to the chat page
           Navigator.push(
@@ -74,6 +78,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => ChatPage(
                 receiverUserEmail: data['email'],
                 receiverUserId: data['uid'],
+                receiversName: data['name'],
               ),
             ),
           );

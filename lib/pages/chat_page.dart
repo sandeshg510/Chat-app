@@ -9,11 +9,12 @@ import 'package:flutter/widgets.dart';
 import '../components/my_text_field.dart';
 
 class ChatPage extends StatefulWidget {
-  final String receiverUserEmail, receiverUserId;
+  final String receiverUserEmail, receiverUserId, receiversName;
   const ChatPage(
       {super.key,
       required this.receiverUserEmail,
-      required this.receiverUserId});
+      required this.receiverUserId,
+      required this.receiversName});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -39,7 +40,7 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.receiverUserEmail),
+        title: Text(widget.receiversName),
       ),
       body: Column(
         children: [

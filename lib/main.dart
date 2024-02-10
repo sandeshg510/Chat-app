@@ -3,6 +3,7 @@ import 'package:chat_messenger/pages/login_page.dart';
 import 'package:chat_messenger/services/auth/auth_gate.dart';
 import 'package:chat_messenger/services/auth/auth_service.dart';
 import 'package:chat_messenger/services/auth/login_or_register.dart';
+import 'package:chat_messenger/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +24,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: Provider.of<AuthService>(context).themeData,
       debugShowCheckedModeBanner: false,
-      home: AuthGate(),
+      home: const AuthGate(),
     );
   }
 }
