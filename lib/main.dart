@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       ),
       // theme: Provider.of<AuthService>(context).themeData,
       debugShowCheckedModeBanner: false,
-      home: const AuthGate(),
+      home: AuthGate(),
     );
   }
 }

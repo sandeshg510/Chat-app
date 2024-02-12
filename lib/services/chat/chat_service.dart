@@ -58,4 +58,20 @@ class ChatService extends ChangeNotifier {
         .orderBy('timestamp', descending: false)
         .snapshots();
   }
+
+  // GET MESSAGES
+  Stream<QuerySnapshot> getLastMessage(String userId, String otherUserId) {
+    // construct chat room id from user ids (sorted to ensure it matches the id used when sending message
+
+    List<String> ids = [userId, otherUserId];
+    ids.sort();
+    String chatRoomId = ids.join('_');
+    return _firestore
+        .collection('chat_rooms')
+        .doc(chatRoomId)
+        .collection('messages')
+        .limit(1)
+        .orderBy('timestamp', descending: false)
+        .snapshots();
+  }
 }
