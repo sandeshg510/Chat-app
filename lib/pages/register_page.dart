@@ -4,7 +4,11 @@ import 'package:chat_messenger/pages/register_with_phone_page.dart';
 import 'package:chat_messenger/services/auth/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+
+import '../screens/components/background.dart';
+import '../screens/components/orDivider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key, required this.onTap});
@@ -52,76 +56,59 @@ class _RegisterPageState extends State<RegisterPage> {
       }
     }
 
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 40,
-          ),
+      body: SingleChildScrollView(
+        child: Background(
+          topImage: 'lib/assets/images/signup_top.png',
+          bottomImage: 'lib/assets/images/main_bottom.png',
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.message,
-                size: 100,
+              // const Text(
+              //   'SIGN UP',
+              //   style: TextStyle(fontWeight: FontWeight.bold),
+              // ),
+
+              SvgPicture.asset(
+                'lib/assets/icons/signup.svg',
+                height: size.height * 0.35,
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              const Text(
-                "Let's create an account for you",
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: size.height * 0.01,
               ),
               MyTextField(
-                  hintText: ' First name',
-                  obscureText: false,
-                  controller: nameController),
-              const SizedBox(
-                height: 20,
+                hintText: ' First name',
+                obscureText: false,
+                controller: nameController,
+                icon: Icons.drive_file_rename_outline_rounded,
               ),
               MyTextField(
-                  hintText: ' Email',
-                  obscureText: false,
-                  controller: emailController),
-              const SizedBox(
-                height: 20,
+                hintText: ' Email',
+                obscureText: false,
+                controller: emailController,
+                icon: Icons.email_rounded,
               ),
               MyTextField(
-                  hintText: ' Password',
-                  obscureText: true,
-                  controller: passwordController),
-              const SizedBox(
-                height: 20,
+                hintText: ' Password',
+                obscureText: true,
+                controller: passwordController,
+                icon: Icons.key_rounded,
               ),
               MyTextField(
-                  hintText: 'Confirm Password',
-                  obscureText: true,
-                  controller: confirmPasswordController),
-              const SizedBox(
-                height: 30,
+                hintText: 'Confirm Password',
+                obscureText: true,
+                controller: confirmPasswordController,
+                icon: Icons.key_rounded,
               ),
               MyButton(
                 buttonTitle: 'Sign up',
-                onTap: signUp,
+                onPressed: signUp,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'OR',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Colors.grey.shade800),
-                ),
-              ),
+              // const OrDivider(),
               MyButton(
                 buttonTitle: 'Sign up with phone number',
-                onTap: () {
+                onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -129,9 +116,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 onTap: widget.onTap,
                               )));
                 },
-              ),
-              const SizedBox(
-                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

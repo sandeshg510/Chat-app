@@ -4,7 +4,7 @@ import '../../constants/constants.dart';
 
 class AlredyRegisteredCheck extends StatelessWidget {
   final bool login;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   const AlredyRegisteredCheck({
     super.key,
     this.login = true,

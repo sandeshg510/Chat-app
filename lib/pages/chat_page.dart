@@ -123,6 +123,7 @@ class _ChatPageState extends State<ChatPage> {
               hintText: 'Enter message',
               obscureText: false,
               controller: _messageController,
+              icon: Icons.message,
             ),
           ),
           const SizedBox(

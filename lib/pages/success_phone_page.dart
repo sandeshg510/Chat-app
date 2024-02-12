@@ -53,7 +53,7 @@ class _SuccessPageState extends State<SuccessPage> {
               ),
               MyButton(
                 buttonTitle: 'Go to home page',
-                onTap: () {
+                onPressed: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(

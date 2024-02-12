@@ -1,28 +1,41 @@
+import 'package:chat_messenger/screens/components/textfield_container.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/constants.dart';
 
 class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final IconData? suffixIcon;
+  final IconData icon;
 
   const MyTextField(
       {super.key,
       required this.hintText,
       required this.obscureText,
-      required this.controller});
+      required this.controller,
+      this.suffixIcon,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hintText,
-        fillColor: Theme.of(context).colorScheme.background,
-        filled: true,
-        enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(32),
-            borderSide: const BorderSide(color: Colors.black26)),
+    return TextFieldContainer(
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          hintText: hintText,
+          suffixIcon: Icon(
+            suffixIcon,
+            color: kPrimaryColor,
+          ),
+          icon: Icon(
+            icon,
+            color: kPrimaryColor,
+          ),
+          filled: true,
+        ),
       ),
     );
   }
