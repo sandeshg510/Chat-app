@@ -1,4 +1,4 @@
-import 'package:chat_messenger/pages/login_page.dart';
+import 'package:chat_messenger/src/features/auth/presentation/pages/login_page.dart';
 import 'package:chat_messenger/pages/register_page.dart';
 import 'package:flutter/material.dart';
 

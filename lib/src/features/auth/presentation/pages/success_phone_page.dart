@@ -1,7 +1,7 @@
 import 'package:chat_messenger/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-import '../components/my_buttons.dart';
+import '../src/features/auth/presentation/widgets/my_buttons.dart';
 import '../components/my_text_field.dart';
 
 class SuccessPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:chat_messenger/constants/constants.dart';
 import 'package:chat_messenger/pages/user_profile.dart';
-import 'package:chat_messenger/services/auth/auth_service.dart';
+import 'package:chat_messenger/src/features/auth/presentation/providers/auth_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
